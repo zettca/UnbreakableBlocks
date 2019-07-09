@@ -1,5 +1,5 @@
 name: UnbreakableBlocks
-version: 0.1-1.14.x
+version: 0.2.0
 main: xyz.zettca.unbreakable.UnbreakableBlocksPlugin
 api-version: 1.14
 author: zettca

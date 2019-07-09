@@ -6,7 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.plugin.Plugin;
+import xyz.zettca.unbreakable.utils.Utils;
 
 public class BlockListener implements Listener {
 
@@ -23,10 +25,22 @@ public class BlockListener implements Listener {
         Material material = block.getType();
 
         if (material == Material.SPAWNER) {
-            plugin.getLogger().warning(String.format("%s tried to destroy %s at %s",
-                    player.getDisplayName(), material, block.getLocation()));
+            plugin.getLogger().info(String.format("%s tried to break %s at %s",
+                    player.getDisplayName(), material, Utils.locationCoords(block.getLocation())));
             player.sendMessage(String.format("[%s] You cannot break blocks of type %s",
                     plugin.getName(), material));
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockExplode(BlockExplodeEvent event) {
+        Block block = event.getBlock();
+        Material material = block.getType();
+
+        if (material == Material.SPAWNER) {
+            plugin.getLogger().info(String.format("%s prevented from exploding at %s",
+                    material, Utils.locationCoords(block.getLocation())));
             event.setCancelled(true);
         }
     }

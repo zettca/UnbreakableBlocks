@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>xyz.zettca.unbreakable</groupId>
     <artifactId>unbreakable</artifactId>
-    <version>0.1-1.14.x</version>
+    <version>0.2.0</version>
 
     <organization>
         <name>ZETTCA</name>

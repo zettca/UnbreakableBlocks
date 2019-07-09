@@ -3,11 +3,13 @@ package xyz.zettca.unbreakable;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.zettca.unbreakable.listener.BlockListener;
+import xyz.zettca.unbreakable.listener.EntityListener;
 import xyz.zettca.unbreakable.listener.PlayerListener;
 
 public class UnbreakableBlocksPlugin extends JavaPlugin {
 
     private final BlockListener blockListener = new BlockListener(this);
+    private final EntityListener entityListener = new EntityListener(this);
     private final PlayerListener playerListener = new PlayerListener(this);
 
     @Override
@@ -28,6 +30,7 @@ public class UnbreakableBlocksPlugin extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
 
         pm.registerEvents(blockListener, this);
+        pm.registerEvents(entityListener, this);
         pm.registerEvents(playerListener, this);
     }
 
