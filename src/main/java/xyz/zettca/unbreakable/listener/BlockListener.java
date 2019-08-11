@@ -24,6 +24,8 @@ public class BlockListener implements Listener {
         Player player = event.getPlayer();
         Material material = block.getType();
 
+        if (player.hasPermission("unbreakable.bypass")) return;
+
         if (material == Material.SPAWNER) {
             plugin.getLogger().info(String.format("%s tried to break %s at %s",
                     player.getDisplayName(), material, Utils.locationCoords(block.getLocation())));

@@ -1,6 +1,32 @@
 name: UnbreakableBlocks
 version: 0.2.0
-main: xyz.zettca.unbreakable.UnbreakableBlocksPlugin
+main: xyz.zettca.unbreakable.UnbreakableBlocks
 api-version: 1.14
 author: zettca
 website: https://zettca.xyz
+
+commands:
+  unbreakable:
+    description: Make blocks Unbreakable!
+    aliases: [ub, ublocks]
+
+permissions:
+  unbreakable.*:
+    description: Access to all commands.
+    children:
+      unbreakable.edit: true
+      unbreakable.bypass: true
+  unbreakable.edit:
+    description: Allows to add/remove unbreakables.
+    children:
+      unbreakable.edit.block: true
+      unbreakable.edit.location: true
+  unbreakable.bypass:
+    description: Allows to bypass/break unbreakable blocks.
+    default: op
+  unbreakable.edit.block:
+    description: Allows to add/remove unbreakable blocks
+    default: op
+  unbreakable.edit.location:
+    description: Allows to add/remove unbreakable positions
+    default: op
