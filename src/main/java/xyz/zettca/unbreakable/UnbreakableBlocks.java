@@ -21,6 +21,8 @@ public class UnbreakableBlocks extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
 
+        saveResource("config.yml", false); // Initial configuration
+
         printUnbreakableBlocks();
 
         registerPluginEvents();
@@ -46,10 +48,10 @@ public class UnbreakableBlocks extends JavaPlugin {
         }
 
         if (goodBlocks.size() > 0) {
-            getLogger().info(String.format("(%s) are now Unbreakable!", getName(), String.join(" ", goodBlocks)));
+            getLogger().info(String.format("(%s) are now Unbreakable!", String.join(" ", goodBlocks)));
         }
         if (badBlocks.size() > 0) {
-            getLogger().warning(String.format("(%s) not found.", getName(), String.join(" ", badBlocks)));
+            getLogger().warning(String.format("(%s) not found.", String.join(" ", badBlocks)));
         }
     }
 
