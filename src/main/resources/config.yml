@@ -1,0 +1,15 @@
+#
+# UnbreakableBlocks configuration
+#
+# Source: https://github.com/zettca/UnbreakableBlocks
+# Documentation: https://github.com/zettca/UnbreakableBlocks/wiki
+#
+
+# Enable UnbreakableBlocks
+enabled: true
+
+# List of blocks (Material) that are Unbreakable
+# Material list: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+blocks:
+  - SPAWNER
+  - BEDROCK

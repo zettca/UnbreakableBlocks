@@ -11,6 +11,8 @@ import xyz.zettca.unbreakable.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static xyz.zettca.unbreakable.utils.Utils.isMaterialUnbreakable;
+
 public class EntityListener implements Listener {
 
     private final Plugin plugin;
@@ -24,7 +26,7 @@ public class EntityListener implements Listener {
         List<Block> blocksToExplode = event.blockList();
         for (Block block : new ArrayList<Block>(blocksToExplode)) {
             Material material = block.getType();
-            if (material == Material.SPAWNER) {
+            if (isMaterialUnbreakable(material, plugin.getConfig())) {
                 plugin.getLogger().info(String.format("%s prevented from exploding at %s",
                         material, Utils.locationCoords(block.getLocation())));
                 blocksToExplode.remove(block);

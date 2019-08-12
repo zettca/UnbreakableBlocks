@@ -1,11 +1,15 @@
 package xyz.zettca.unbreakable;
 
+import org.bukkit.Material;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.zettca.unbreakable.command.UnbreakableCommand;
 import xyz.zettca.unbreakable.listener.BlockListener;
 import xyz.zettca.unbreakable.listener.EntityListener;
 import xyz.zettca.unbreakable.listener.PlayerListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnbreakableBlocks extends JavaPlugin {
 
@@ -16,7 +20,8 @@ public class UnbreakableBlocks extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        //getLogger().info(getName() + " successfully enabled.");
+
+        printUnbreakableBlocks();
 
         registerPluginEvents();
         registerPluginCommands();
@@ -25,7 +30,27 @@ public class UnbreakableBlocks extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
-        //getLogger().info(getName() + " successfully disabled.");
+    }
+
+    private void printUnbreakableBlocks() {
+        List<String> blocks = getConfig().getStringList("blocks");
+        List<String> goodBlocks = new ArrayList<String>();
+        List<String> badBlocks = new ArrayList<String>();
+
+        for (String block : blocks) {
+            if (Material.getMaterial(block) != null) {
+                goodBlocks.add(block);
+            } else {
+                badBlocks.add(block);
+            }
+        }
+
+        if (goodBlocks.size() > 0) {
+            getLogger().info(String.format("(%s) are now Unbreakable!", getName(), String.join(" ", goodBlocks)));
+        }
+        if (badBlocks.size() > 0) {
+            getLogger().warning(String.format("(%s) not found.", getName(), String.join(" ", badBlocks)));
+        }
     }
 
     private void registerPluginEvents() {
